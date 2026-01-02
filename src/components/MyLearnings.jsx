@@ -50,9 +50,11 @@ function MyLearnings() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {items.map(item => {
-            const parts = item.filePath.split("\\");
-            const fileName=parts[parts.length-1];
-            const project=parts[parts.length-2];
+            const normalizedPath = item.filePath.replace(/\\/g, "/");
+const parts = normalizedPath.split("/");
+const fileName = parts[parts.length - 1];
+const project = parts[parts.length - 2];
+
             return (
               <div
                 key={item.id}

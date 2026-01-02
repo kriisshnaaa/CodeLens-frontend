@@ -32,9 +32,14 @@ export default function App() {
 
 
   /* ---------------- AUTH ---------------- */
-  useEffect(() => {
+useEffect(() => {
+  const timer = setTimeout(() => {
     getCurrentUser().then(setUser);
-  }, []);
+  }, 500); // small delay for mobile browsers
+
+  return () => clearTimeout(timer);
+}, []);
+
   
 
 useEffect(() => {

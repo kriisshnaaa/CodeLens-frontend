@@ -101,9 +101,9 @@ const project = parts[parts.length - 2];
           <>
             {/* HEADER */}
             <h3 style={{ marginBottom: 10 }}>
-              📑{selected.filePath.split("\\").pop()} 
-              
-            </h3>
+  📑{selected.filePath.replace(/\\/g, "/").split("/").pop()}
+</h3>
+
 
             {/* CODE BLOCK */}
             {selected.code && (

@@ -1,0 +1,491 @@
+:root {
+  --bg-main: #f8fafc;
+  --bg-panel: #ffffff;
+  --bg-muted: #f1f5f9;
+
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+
+  --border: #e5e7eb;
+  --primary: #2563eb;
+
+  --code-bg: #020617;
+  --code-text: #e5e7eb;
+}
+
+.app.dark {
+  --bg-main: #020617;
+  --bg-panel: #020617;
+  --bg-muted: #020617;
+
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+
+  --border: #1e293b;
+  --primary: #3b82f6;
+
+  --code-bg: #020617;
+  --code-text: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+
+/* ================= LAYOUT ================= */
+
+.app-root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.workspace-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 240px 2fr 3fr;
+  gap: 16px;
+  padding: 16px;
+  min-height: 0;
+}
+
+/* ================= HEADER ================= */
+
+.app-header {
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+}
+
+
+.app-header h1 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.app-header p {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* ================= PANELS ================= */
+
+.left-panel,
+.center-panel,
+.right-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+
+.center-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* ================= SIDEBAR ================= */
+
+.left-panel h3 {
+  margin-top: 0;
+  font-size: 14px;
+  color: #475569;
+}
+
+.left-panel button {
+  background: var(--bg-muted);
+  color: var(--text-main);
+  border: none;
+  transition: background 0.2s ease;
+}
+
+.left-panel button:hover {
+  background: rgba(37, 99, 235, 0.12);
+}
+
+
+/* ================= CARDS ================= */
+
+.upload-card,
+.tree-card {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+}
+
+/* ================= CODE VIEWER ================= */
+
+.code-viewer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+}
+
+.code-viewer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.code-viewer-header h3 {
+  margin: 0;
+}
+
+.code-viewer-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  min-height: 0;
+}
+
+.code-viewer-code,
+.code-viewer-explanation {
+  min-width: 0;
+  overflow: auto;
+}
+
+/* ================= CODE BLOCK ================= */
+
+.code-block {
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 18px;
+  border-radius: 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow: auto;
+  max-height: 100%;
+  box-shadow: inset 0 0 0 100px rgba(255,255,255,0.04);
+}
+
+
+
+/* ================= EXPLANATION ================= */
+
+.explanation-box {
+  background: #f8fafc;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ================= BUTTONS ================= */
+
+.primary-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background: #1e40af;
+}
+.logout-btn{
+   background: gainsboro;
+   width: 200px;
+  color: black;
+  border: 2px solid gray;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.logout-btn:hover{
+  background: grey;
+}
+.secondary-btn {
+  background: #f1f5f9;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* ================= PLACEHOLDER ================= */
+
+.code-placeholder {
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* ================= DARK MODE ================= */
+
+body.dark {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+body.dark .app-header,
+body.dark .left-panel,
+body.dark .center-panel,
+body.dark .right-panel,
+body.dark .upload-card,
+body.dark .tree-card {
+  background: #020617;
+  border-color: #1e293b;
+}
+
+body.dark .secondary-btn {
+  background: #1e293b;
+  color: white;
+}
+.app.dark {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+.app.dark header {
+  background: #020617;
+  border-color: #1e293b;
+}
+
+.app.dark aside {
+  background: #020617;
+  border-color: #1e293b;
+}
+
+.app.dark main {
+  background: #020617;
+}
+
+.app.dark button {
+  background: #1e293b;
+  color: #e5e7eb;
+}
+
+.app.dark pre {
+  background: #020617;
+}
+* {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+.left-panel,
+.center-panel,
+.right-panel {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+button {
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+.code-block {
+  line-height: 1.6;
+  font-family: "JetBrains Mono", monospace;
+}
+.tree-card li:hover {
+  background: rgba(37, 99, 235, 0.08);
+}
+.explanation-box {
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+.tree-card li {
+  transition: background 0.15s ease;
+}
+/* ================= HERO UPLOAD CARD ================= */
+
+.upload-card {
+  max-width: 520px;
+  margin: 80px auto;
+  padding: 40px 36px;
+  border-radius: 20px;
+  text-align: center;
+  background: var(--bg-panel);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.08),
+    0 1px 2px rgba(0,0,0,0.04);
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.upload-card h2 {
+  margin-top: 18px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.upload-card p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Icon / illustration */
+.upload-hero-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
+/* Upload input */
+.upload-card input[type="file"] {
+  margin-top: 18px;
+}
+
+/* CTA button */
+.upload-card .primary-btn,
+.upload-card button {
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px;
+  font-size: 15px;
+  border-radius: 12px;
+}
+
+/* Entry animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ================= AI EXPLANATION POLISH ================= */
+
+/* Keep explanation inside a scrollable container */
+.explanation-box {
+  max-height: 420px;              /* prevents UI breaking */
+  overflow-y: auto;
+  padding: 18px 20px;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    to bottom right,
+    var(--bg-muted),
+    var(--bg-panel)
+  );
+
+  border-left: 4px solid var(--primary);
+
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-main);
+
+  box-shadow:
+    inset 0 0 0 1px var(--border),
+    0 4px 14px rgba(0,0,0,0.05);
+}
+
+/* Improve readability of long AI text */
+.explanation-box p {
+  margin-bottom: 14px;
+}
+
+/* Make lists easier to scan if AI returns them */
+.explanation-box ul {
+  padding-left: 18px;
+  margin-bottom: 14px;
+}
+
+.explanation-box li {
+  margin-bottom: 8px;
+}
+
+/* Subtle scrollbar styling */
+.explanation-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.explanation-box::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.4);
+  border-radius: 8px;
+}
+
+.explanation-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Dark mode refinement */
+.app.dark .explanation-box {
+  background: linear-gradient(
+    to bottom right,
+    #020617,
+    #020617
+  );
+  border-left-color: var(--primary);
+}
+/* ================= AI EXPLANATION – RAW TEXT ENHANCEMENT ================= */
+
+.explanation-box {
+  white-space: pre-wrap;        /* preserves AI formatting */
+  font-size: 15.5px;
+  line-height: 1.9;
+  letter-spacing: 0.2px;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* Visually separate AI sections (### style headings in text) */
+.explanation-box {
+  background-image: linear-gradient(
+    transparent 97%,
+    rgba(37, 99, 235, 0.05) 98%
+  );
+  background-size: 100% 3.6em;
+}
+
+/* Make emoji section titles stand out */
+.explanation-box strong {
+  font-weight: 600;
+}
+
+/* Improve readability of long blocks */
+.explanation-box::selection {
+  background: rgba(37, 99, 235, 0.25);
+}
+
+/* Add breathing room between logical blocks */
+.explanation-box br + br {
+  display: block;
+  content: "";
+  margin-bottom: 14px;
+}
+.code-block {
+  max-height: 260px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

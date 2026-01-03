@@ -10,8 +10,9 @@ export default function AuthSuccess({ setUser }) {
 
     if (token) {
       localStorage.setItem("token", token);
-      navigate("/");
     }
+
+    navigate("/");
   }, []);
 
   return <p>Signing you in...</p>;

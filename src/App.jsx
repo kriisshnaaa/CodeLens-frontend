@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import UploadBox from "./components/UploadBox";
 import FolderTree from "./components/FolderTree";
@@ -6,6 +7,7 @@ import CodeViewer from "./components/CodeViewer";
 import MyLearnings from "./components/MyLearnings";
 import CodeLensLogo from "./components/CodeLensLogo";
 import IntroOverlay from "./components/IntroOverlay";
+import AuthSuccess from "./pages/AuthSuccess";
 
 import "./styles/theme.css";
 import { getCurrentUser, loginWithGoogle, logout } from "./api/auth";
@@ -186,6 +188,20 @@ useEffect(() => {
 
   /* ---------------- UI ---------------- */
   return (
+      <BrowserRouter>
+    <Routes>
+      {/* 🔐 OAuth success route */}
+      <Route
+        path="/auth/success"
+        element={
+          <AuthSuccess setUser={setUser} />
+        }
+      />
+
+      {/* 🏠 Main App */}
+      <Route
+        path="/*"
+        element={
     <>
       <IntroOverlay show={showIntro} />
       {showIntroLogo && (
@@ -608,6 +624,10 @@ useEffect(() => {
         </main>
       </div>
     </>
+        }
+        />
+        </Routes>
+        </BrowserRouter>
   );
 }
 

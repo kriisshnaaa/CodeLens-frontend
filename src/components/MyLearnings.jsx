@@ -7,9 +7,14 @@ function MyLearnings() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/save/my`, {
-  credentials: "include"
+   const token = localStorage.getItem("token");
+
+fetch(`${import.meta.env.VITE_API_URL}/save/my`, {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
 })
+
 
       .then(res => {
         if (!res.ok) throw new Error("Not authenticated");

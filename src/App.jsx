@@ -164,27 +164,30 @@ useEffect(() => {
   };
 
   /* ---------------- SAVE ---------------- */
-  const handleSaveLearning = async () => {
-    if (!selectedFile || !explanation) return;
-    if (!user) return (loginWithGoogle());
+const handleSaveLearning = async () => {
+  if (!selectedFile || !explanation) return;
+  if (!user) return loginWithGoogle();
 
-    const projectName = selectedFile.split("/")[0];
+  const token = localStorage.getItem("token");
+  if (!token) return;
 
-    await fetch(`${import.meta.env.VITE_API_URL}/save/save`, {
+  const projectName = selectedFile.replace(/\\/g, "/").split("/")[0];
 
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({
-        projectName,
-        filePath: selectedFile,
-        explanation,
-        code
-      })
-    });
+  await fetch(`${import.meta.env.VITE_API_URL}/save/save`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      projectName,
+      filePath: selectedFile,
+      explanation,
+      code
+    })
+  });
+};
 
-    
-  };
 
   /* ---------------- UI ---------------- */
   return (

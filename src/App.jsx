@@ -32,12 +32,26 @@ export default function App() {
 
 
   /* ---------------- AUTH ---------------- */
+/* ---------------- AUTH ---------------- */
 useEffect(() => {
-  const timer = setTimeout(() => {
-    getCurrentUser().then(setUser);
-  }, 500); // small delay for mobile browsers
+  const initAuth = async () => {
+    // 1️⃣ Check token from redirect URL
+    const params = new URLSearchParams(window.location.search);
+    const tokenFromUrl = params.get("token");
 
-  return () => clearTimeout(timer);
+    if (tokenFromUrl) {
+      localStorage.setItem("token", tokenFromUrl);
+
+      // clean URL (remove ?token=...)
+      window.history.replaceState({}, document.title, "/");
+    }
+
+    // 2️⃣ Fetch user using JWT
+    const user = await getCurrentUser();
+    setUser(user);
+  };
+
+  initAuth();
 }, []);
 
   
